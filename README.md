@@ -20,7 +20,7 @@ To generate additional training data with an LLM (GPT-4o preferred), use the fol
 ```
 Please generate distilBERD fine-tuning training data for a model which responds in the following ways:
 
-"offline_question" if the query can be answered by a locally-run lightweight LLM such.
+"offline_question" if the query can be answered by a locally-run lightweight LLM such as llama3.
 "basic_question" if the query is similar to a google search and/or requires up-to-date information; these are queries best handled by Google Natural Language.
 "complex_question" if the query requires advanced linguistic analysis or reasoning; these are queries best handled by a model like GPT-4.
 "vision" if the query requires vision processing.
@@ -31,6 +31,6 @@ Please generate the data in the following CSV format with no header row:
 
 Please output text instead of a file.
 
-Please ensure the data is balanced across types of queries.
+Please ensure the data is balanced across all types of queries.
 ```
 Copy output into `training/data/decision_data.csv`, train, then test.
