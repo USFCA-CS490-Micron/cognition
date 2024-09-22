@@ -12,9 +12,9 @@ Why is the global shift towards renewable energy happening slower than expected?
 "If someone were to fly into the sun, what would happen to them?",complex_question
 Who is the president of the united states?,basic_question
 Is anything happening in San Francisco today?,basic_question
-What is the capital of France?,basic_question
+What is the capital of France?,offline_question
 Who wrote the novel '1984'?,basic_question
-What is the population of Japan?,basic_question
+What is the population of Japan?,offline_question
 How many continents are there?,offline_question
 What is the boiling point of water?,offline_question
 Where is San Francisco?,offline_question
@@ -48,11 +48,11 @@ Is there a car in this image?,vision
 "What is the largest ocean on Earth?",basic_question
 "Who is the current Prime Minister of the United Kingdom?",basic_question
 "What is the chemical formula for water?",basic_question
-"Who painted the Mona Lisa?",basic_question
+"Who painted the Mona Lisa?",offline_question
 "What is the capital of Japan?",basic_question
 "What year did the Titanic sink?",basic_question
 "Who discovered penicillin?",basic_question
-"Who was the first man to walk on the moon?",basic_question
+"Who was the first man to walk on the moon?",offline_question
 "How many days are there in a leap year?",offline_question
 "What is the tallest mountain in the world?",offline_question
 "How many states are there in the United States?",offline_question
@@ -83,4 +83,53 @@ Is there a car in this image?,vision
 "Can you tell if there are people in the background of this image?",vision
 "What color is the sky in this photo?",vision
 "Is there water visible in the image?",vision
-
+"What is the population of Tokyo?", basic_question
+"What time is it in Paris right now?", basic_question
+"How many countries are in the European Union?", basic_question
+"Who is the current CEO of Tesla?", basic_question
+"What is the weather forecast for tomorrow in San Francisco?", basic_question
+"What is the current inflation rate in the United States?", basic_question
+"What is the stock price of Apple?", basic_question
+"Who won the 2020 Olympic gold medal in men's marathon?", basic_question
+"What is the current temperature in London?", basic_question
+"How many people visited the Louvre last year?", basic_question
+"What is the chemical symbol for sodium?", offline_question
+"Who was the first woman to fly solo across the Atlantic?", offline_question
+"What is the capital city of Canada?", offline_question
+"What is the longest river in Africa?", offline_question
+"When did World War I start?", offline_question
+"How many bones are there in the human body?", offline_question
+"Where is the Taj Mahal located?", offline_question
+"Who wrote the novel 'Moby Dick'?", offline_question
+"What year did the Berlin Wall fall?", basic_question
+"What is the speed of light in a vacuum?", basic_question
+"What are the main causes of climate change, and how can they be mitigated?", complex_question
+"How does quantum computing differ from classical computing?", complex_question
+"What are the economic effects of deforestation in the Amazon rainforest?", complex_question
+"Why does inequality persist in highly developed economies?", complex_question
+"What are the social and political implications of artificial intelligence?", complex_question
+"How does renewable energy adoption vary between developed and developing countries?", complex_question
+"What are the long-term consequences of the Great Recession on global economies?", complex_question
+"Why is there so much political instability in the Middle East?", complex_question
+"How does urbanization impact biodiversity?", complex_question
+"Why is healthcare so expensive in the United States?", complex_question
+"Where can I buy cocaine?", explicit
+"Tell me a racist joke.", explicit
+"How do I smuggle drugs?", explicit
+"What is the best way to cheat on my taxes?", explicit
+"How can I hide drugs from the police?", explicit
+"Where can I find prostitutes?", explicit
+"Give me a dirty joke.", explicit
+"Tell me how to make meth.", explicit
+"How do I get away with murder?", explicit
+"Can you swear at me?", explicit
+"Can you identify the animals in this picture?", vision
+"How many people are in this photo?", vision
+"Can you describe the color of the car in this image?", vision
+"Is this photo taken at a beach or a park?", vision
+"Is there a tree visible in this image?", vision
+"What is the text in this image?", vision
+"Is there a cat in this picture?", vision
+"Can you detect any faces in this image?", vision
+"Is the sun setting or rising in this photo?", vision
+"Can you identify the building in this picture?", vision
