@@ -13,8 +13,8 @@ Why is the global shift towards renewable energy happening slower than expected?
 Who is the president of the united states?,basic_question
 Is anything happening in San Francisco today?,basic_question
 What is the capital of France?,offline_question
-Who wrote the novel '1984'?,basic_question
-What is the population of Japan?,offline_question
+Who wrote the novel '1984'?,offline_question
+What is the population of Japan?,basic_question
 How many continents are there?,offline_question
 What is the boiling point of water?,offline_question
 Where is San Francisco?,offline_question
@@ -45,13 +45,13 @@ Is there a car in this image?,vision
 "Why is the adoption of electric vehicles slower in developing countries?",complex_question
 "Who invented the telephone?",offline_question
 "What is the atomic number of carbon?",offline_question
-"What is the largest ocean on Earth?",basic_question
+"What is the largest ocean on Earth?",offline_question
 "Who is the current Prime Minister of the United Kingdom?",basic_question
-"What is the chemical formula for water?",basic_question
+"What is the chemical formula for water?",offline_question
 "Who painted the Mona Lisa?",offline_question
-"What is the capital of Japan?",basic_question
+"What is the capital of Japan?",offline_question
 "What year did the Titanic sink?",basic_question
-"Who discovered penicillin?",basic_question
+"Who discovered penicillin?",offline_question
 "Who was the first man to walk on the moon?",offline_question
 "How many days are there in a leap year?",offline_question
 "What is the tallest mountain in the world?",offline_question
@@ -102,7 +102,7 @@ Is there a car in this image?,vision
 "Where is the Taj Mahal located?", offline_question
 "Who wrote the novel 'Moby Dick'?", offline_question
 "What year did the Berlin Wall fall?", basic_question
-"What is the speed of light in a vacuum?", basic_question
+"What is the speed of light in a vacuum?", offline_question
 "What are the main causes of climate change, and how can they be mitigated?", complex_question
 "How does quantum computing differ from classical computing?", complex_question
 "What are the economic effects of deforestation in the Amazon rainforest?", complex_question
