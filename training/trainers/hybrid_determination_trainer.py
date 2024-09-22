@@ -41,7 +41,7 @@ encoded_dataset = dataset.map(preprocess_data, batched=True)
 
 # Define training arguments with no evaluation (or add eval_dataset if needed)
 training_args = TrainingArguments(
-    output_dir="./results",
+    output_dir="./hybrid-determination-results",
     evaluation_strategy="no",  # Disable evaluation, or change as needed
     learning_rate=2e-5,
     per_device_train_batch_size=8,
