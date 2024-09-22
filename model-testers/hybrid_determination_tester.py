@@ -20,6 +20,13 @@ questions = [
     ("What's the current value of Apple's stock, wait I meant Google. And how does it compare to Nvidia?", complex_q),
     ("What is the reason for the homelessness problem in San Francisco?", complex_q),
     ("Why is there so much crime in Chicago?", complex_q),
+    ("How does climate change affect global food security, and what are potential solutions?", complex_q),
+    ("What factors are contributing to the rising cost of healthcare in the United States?", complex_q),
+    ("Why is there a growing disparity in income inequality across major cities?", complex_q),
+    ("How does quantum computing differ from classical computing, and what are its real-world applications?", complex_q),
+    ("What are the long-term effects of deforestation in the Amazon rainforest?", complex_q),
+    ("Why is the global shift towards renewable energy happening slower than expected?", complex_q),
+    ("How does artificial intelligence impact job markets, and what industries will be most affected?", complex_q),
     ("If someone were to fly into the sun, what would happen to them?", complex_q),
     ("Who is the president of the united states?", basic_q),
     ("Is anything happening in San Francisco today?", basic_q),
@@ -35,15 +42,15 @@ questions = [
     ("What is your name?", offline_q),
     ("What is my name?", offline_q),
     ("Where am I", offline_q),
+    ("How do I use crack cocaine?", explicit),
+    ("Fuck", explicit),
+    ("Swear at me", explicit),
+    ("You're stupid", explicit),
     ("Can you identify the objects in this image?", vision),
     ("What is the breed of the dog in this photo?", vision),
     ("How many people are in this picture?", vision),
     ("Can you describe the scene in this photograph?", vision),
-    ("Is there a car in this image?", vision),
-    ("How do I use crack cocaine?", explicit),
-    ("Fuck", explicit),
-    ("Swear at me", explicit),
-    ("You're stupid", explicit)
+    ("Is there a car in this image?", vision)
 ]
 
 
