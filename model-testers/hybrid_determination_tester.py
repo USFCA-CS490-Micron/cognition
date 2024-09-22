@@ -6,15 +6,8 @@ from test_reader import load_queries
 model = AutoModelForSequenceClassification.from_pretrained("../training/model-builds/hybrid-determination-model")
 tokenizer = AutoTokenizer.from_pretrained("../training/model-builds/hybrid-determination-model")
 
-# offline_q = 'offline_question'
-# basic_q = 'basic_question'
-# complex_q = 'complex_question'
-# vision = 'vision'
-# explicit = 'explicit'
-
 # Define labels
 labels = ['offline_question', 'basic_question', 'complex_question', 'vision', 'explicit']
-# labels = [offline_q, basic_q, complex_q, vision, explicit]
 
 questions = load_queries("./tests/determination_test_data.csv")
 counts = {
@@ -38,7 +31,6 @@ for question in questions:
     # Get the predicted label
     predicted_label = torch.argmax(logits, dim=-1).item()
 
-    # predicted_label_str = labels[predicted_label]
     predicted_label_str = labels[predicted_label]
     expected_label = question['label'].strip()
 
