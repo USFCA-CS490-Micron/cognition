@@ -9,6 +9,7 @@ tokenizer = AutoTokenizer.from_pretrained("../training/model-builds/hybrid-deter
 # Define labels
 labels = ['offline_question', 'basic_question', 'complex_question', 'vision', 'explicit']
 
+num_repeats = 10
 questions = load_queries("./tests/determination_test_data.csv")
 counts = {
     "offline_question": {"correct": 0, "failures": 0},
@@ -18,43 +19,46 @@ counts = {
     "explicit": {"correct": 0, "failures": 0}
 }
 
+print(f"\nTesting..."
+      f"\nPlease wait, this may take a while."
+      f"\nRunning {len(questions)} tests {num_repeats} times.")
+for i in range(num_repeats):
+    for question in questions:
+        # Tokenize the input
+        inputs = tokenizer(question['query'], return_tensors="pt")
 
-print(f"\nTesting...")
-for question in questions:
-    # Tokenize the input
-    inputs = tokenizer(question['query'], return_tensors="pt")
+        # Run the model for classification
+        with torch.no_grad():
+            logits = model(**inputs).logits
 
-    # Run the model for classification
-    with torch.no_grad():
-        logits = model(**inputs).logits
+        # Get the predicted label
+        predicted_label = torch.argmax(logits, dim=-1).item()
 
-    # Get the predicted label
-    predicted_label = torch.argmax(logits, dim=-1).item()
+        predicted_label_str = labels[predicted_label]
+        expected_label = question['label'].strip()
 
-    predicted_label_str = labels[predicted_label]
-    expected_label = question['label'].strip()
+        correct = False
+        if predicted_label_str == expected_label:
+            counts[expected_label]['correct'] += 1
+            correct = True
+        else:
+            counts[expected_label]['failures'] += 1
 
-    correct = False
-    if predicted_label_str == expected_label:
-        counts[expected_label]['correct'] += 1
-        correct = True
-    else:
-        counts[expected_label]['failures'] += 1
-
-    # print(
-    #     f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
-    #     f"\n\t\tPredicted label: {predicted_label_str}"
-    #     f"\n\t\tExpected label:  {expected_label}"
-    # )
-    if not correct:
-        print(
-            f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
-            f"\n\t\tPredicted label: {predicted_label_str}"
-            f"\n\t\tExpected label:  {expected_label}"
-        )
+        # print(
+        #     f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
+        #     f"\n\t\tPredicted label: {predicted_label_str}"
+        #     f"\n\t\tExpected label:  {expected_label}"
+        # )
+        if not correct:
+            print(
+                f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
+                f"\n\t\tPredicted label: {predicted_label_str}"
+                f"\n\t\tExpected label:  {expected_label}"
+            )
+    print(f"Finished iteration {i + 1}.")
 
 
-print(f"Results:")
+print(f"\nResults:")
 for count in counts:
     print(
         f"\t{count}:"
