@@ -6,6 +6,7 @@ Lightweight fine-tuned distilBERD LLM to determine which service (local/cloud/vi
 - Run "training/trainers/hybrid_determination_trainer.py"
 ### To Test:
 - Run "model-testers/hybrid_determination_tester.py"
+- Output accuracy must be 0.98 (98%) or greater to be considered Acceptable
 ### Labels
 | Type               | Explanation                                                                                               |
 |--------------------|-----------------------------------------------------------------------------------------------------------|
@@ -33,7 +34,7 @@ Please output text instead of a file.
 
 Please ensure the data is balanced across all types of queries.
 ```
-Copy output into `training/data/decision_data.csv`, train, then test.
+Please ensure labels are accurate for the queries, then copy output into `training/data/decision_data.csv`, train, then test.
 
 ### Generate Tests with an LLM
 To generate additional tests with an LLM (GPT-4o preferred), use the following prompt:
@@ -53,4 +54,4 @@ Please output text instead of a file.
 
 Please ensure the tests are balanced across all types of queries.
 ```
-Copy output into `model-testers/tests/determination_test_data.csv`, train, then test.
+Please ensure labels are accurate for the queries, then copy output into `model-testers/tests/determination_test_data.csv`, train, then test.
