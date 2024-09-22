@@ -8,7 +8,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=5)
 
 # Load your dataset from the CSV file
-data = pd.read_csv("decision_data.csv")
+data = pd.read_csv("../data/decision_data.csv")
 
 # Clean the labels by stripping leading/trailing spaces and quotes
 data['label'] = data['label'].str.strip()  # Remove leading/trailing whitespace
@@ -61,5 +61,5 @@ trainer = Trainer(
 trainer.train()
 
 # Save the fine-tuned model
-model.save_pretrained("./model-builds/hybrid-determination-model")
-tokenizer.save_pretrained("./model-builds/hybrid-determination-model")
+model.save_pretrained("../model-builds/hybrid-determination-model")
+tokenizer.save_pretrained("../model-builds/hybrid-determination-model")
