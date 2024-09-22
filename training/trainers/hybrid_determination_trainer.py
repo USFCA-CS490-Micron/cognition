@@ -61,5 +61,5 @@ trainer = Trainer(
 trainer.train()
 
 # Save the fine-tuned model
-model.save_pretrained("../model-builds/hybrid-determination-model")
-tokenizer.save_pretrained("../model-builds/hybrid-determination-model")
+model.save_pretrained("../model-builds/hybrid-determination")
+tokenizer.save_pretrained("../model-builds/hybrid-determination")

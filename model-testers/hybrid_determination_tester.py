@@ -3,8 +3,8 @@ import torch
 from test_reader import load_queries
 
 # Load the fine-tuned model and tokenizer
-model = AutoModelForSequenceClassification.from_pretrained("../training/model-builds/hybrid-determination-model")
-tokenizer = AutoTokenizer.from_pretrained("../training/model-builds/hybrid-determination-model")
+model = AutoModelForSequenceClassification.from_pretrained("../training/model-builds/hybrid-determination")
+tokenizer = AutoTokenizer.from_pretrained("../training/model-builds/hybrid-determination")
 
 # Define labels
 labels = ['offline_question', 'basic_question', 'complex_question', 'vision', 'explicit']
@@ -71,5 +71,7 @@ print(
     f"\n\tTotal Correct: {total_correct}"
     f"\n\tTotal Failures: {total_failures}"
     f"\n\tAccuracy: {(total_correct / total_responses) * 100:.1f}%"
+    f" {str("\033[92m" +"ACCEPTABLE" + "\033[0m") if (total_correct / total_responses) > .95
+        else str("\033[91m" +"CONTINUE TRAINING" + "\033[0m")}"
 )
 
