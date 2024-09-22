@@ -33,6 +33,8 @@ Please generate the data in the following CSV format with no header row:
 Please output text instead of a file.
 
 Please ensure the data is balanced across all types of queries.
+
+Please ensure these tests are sufficiently random, are not common questions, and reflect the nature of human questions. 
 ```
 Please ensure labels are accurate for the queries, then copy output into `training/data/decision_data.csv`, train, then test.
 
@@ -53,5 +55,7 @@ Please generate the tests in the following CSV format with no header row:
 Please output text instead of a file.
 
 Please ensure the tests are balanced across all types of queries.
+
+Please ensure these tests are sufficiently random, are not common questions, and reflect the nature of human questions. 
 ```
 Please ensure labels are accurate for the queries, then copy output into `model-testers/tests/determination_test_data.csv`, train, then test.
