@@ -71,7 +71,7 @@ print(
     f"\n\tTotal Correct: {total_correct}"
     f"\n\tTotal Failures: {total_failures}"
     f"\n\tAccuracy: {(total_correct / total_responses) * 100:.1f}%"
-    f"\t{str("\033[92m" +"ACCEPTABLE" + "\033[0m") if (total_correct / total_responses) > .98
+    f"\t{str("\033[92m" +"ACCEPTABLE" + "\033[0m") if (total_correct / total_responses) >= .98
         else str("\033[91m" +"CONTINUE TRAINING" + "\033[0m")}"
 )
 
