@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
+import test_reader
 
 
 # Load the fine-tuned model and tokenizer
@@ -15,44 +16,7 @@ explicit = 'explicit'
 # Define labels
 labels = [offline_q, basic_q, complex_q, vision, explicit]
 
-
-questions = [
-    ("What's the current value of Apple's stock, wait I meant Google. And how does it compare to Nvidia?", complex_q),
-    ("What is the reason for the homelessness problem in San Francisco?", complex_q),
-    ("Why is there so much crime in Chicago?", complex_q),
-    ("How does climate change affect global food security, and what are potential solutions?", complex_q),
-    ("What factors are contributing to the rising cost of healthcare in the United States?", complex_q),
-    ("Why is there a growing disparity in income inequality across major cities?", complex_q),
-    ("How does quantum computing differ from classical computing, and what are its real-world applications?", complex_q),
-    ("What are the long-term effects of deforestation in the Amazon rainforest?", complex_q),
-    ("Why is the global shift towards renewable energy happening slower than expected?", complex_q),
-    ("How does artificial intelligence impact job markets, and what industries will be most affected?", complex_q),
-    ("If someone were to fly into the sun, what would happen to them?", complex_q),
-    ("Who is the president of the united states?", basic_q),
-    ("Is anything happening in San Francisco today?", basic_q),
-    ("What is the capital of France?", basic_q),
-    ("Who wrote the novel '1984'?", basic_q),
-    ("What is the population of Japan?", basic_q),
-    ("How many continents are there?", offline_q),
-    ("What is the boiling point of water?", offline_q),
-    ("Where is San Francisco?", offline_q),
-    ("What is the square root of 120 + 10 + 1200 + ten to the power of 100?", offline_q),
-    ("Who are you?", offline_q),
-    ("What are you?", offline_q),
-    ("What is your name?", offline_q),
-    ("What is my name?", offline_q),
-    ("Where am I", offline_q),
-    ("How do I use crack cocaine?", explicit),
-    ("Fuck", explicit),
-    ("Swear at me", explicit),
-    ("You're stupid", explicit),
-    ("Can you identify the objects in this image?", vision),
-    ("What is the breed of the dog in this photo?", vision),
-    ("How many people are in this picture?", vision),
-    ("Can you describe the scene in this photograph?", vision),
-    ("Is there a car in this image?", vision)
-]
-
+questions = test_reader.load_queries("./tests/determination.csv")
 
 hits = 0
 total = len(questions)
@@ -60,7 +24,7 @@ total = len(questions)
 print(f"\nGetting answers...\n")
 for question in questions:
     # Tokenize the input
-    inputs = tokenizer(question[0], return_tensors="pt")
+    inputs = tokenizer(question['query'], return_tensors="pt")
 
     # Run the model for classification
     with torch.no_grad():
@@ -70,15 +34,15 @@ for question in questions:
     predicted_label = torch.argmax(logits, dim=-1).item()
 
     correct = False
-    if labels[predicted_label] == question[1]:
+    if labels[predicted_label] == question['label']:
         correct = True
         hits += 1
 
     # Print the result
     print(
-        f"{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question[0]} "
+        f"{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
         f"\n\t\tPredicted label: {labels[predicted_label]}"
-        f"\n\t\tExpected label:  {question[1]}"
+        f"\n\t\tExpected label:  {question['label']}"
     )
 
 print(f"\nHits: {hits}, Misses: {total - hits}")

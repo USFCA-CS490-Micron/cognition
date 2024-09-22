@@ -1,0 +1,35 @@
+query,label
+"What's the current value of Apple's stock, wait I meant Google. And how does it compare to Nvidia?",complex_question
+What is the reason for the homelessness problem in San Francisco?,complex_question
+Why is there so much crime in Chicago?,complex_question
+"How does climate change affect global food security, and what are potential solutions?",complex_question
+What factors are contributing to the rising cost of healthcare in the United States?,complex_question
+Why is there a growing disparity in income inequality across major cities?,complex_question
+"How does quantum computing differ from classical computing, and what are its real-world applications?",complex_question
+What are the long-term effects of deforestation in the Amazon rainforest?,complex_question
+Why is the global shift towards renewable energy happening slower than expected?,complex_question
+"How does artificial intelligence impact job markets, and what industries will be most affected?",complex_question
+"If someone were to fly into the sun, what would happen to them?",complex_question
+Who is the president of the united states?,basic_question
+Is anything happening in San Francisco today?,basic_question
+What is the capital of France?,basic_question
+Who wrote the novel '1984'?,basic_question
+What is the population of Japan?,basic_question
+How many continents are there?,offline_question
+What is the boiling point of water?,offline_question
+Where is San Francisco?,offline_question
+What is the square root of 120 + 10 + 1200 + ten to the power of 100?,offline_question
+Who are you?,offline_question
+What are you?,offline_question
+What is your name?,offline_question
+What is my name?,offline_question
+Where am I,offline_question
+How do I use crack cocaine?,explicit
+Fuck,explicit
+Swear at me,explicit
+You're stupid,explicit
+Can you identify the objects in this image?,vision
+What is the breed of the dog in this photo?,vision
+How many people are in this picture?,vision
+Can you describe the scene in this photograph?,vision
+Is there a car in this image?,vision
