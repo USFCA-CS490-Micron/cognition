@@ -3,8 +3,8 @@ import torch
 
 
 # Load the fine-tuned model and tokenizer
-model = AutoModelForSequenceClassification.from_pretrained("../training/hybrid-determination-model")
-tokenizer = AutoTokenizer.from_pretrained("../training/hybrid-determination-model")
+model = AutoModelForSequenceClassification.from_pretrained("../training/model-builds/hybrid-determination-model")
+tokenizer = AutoTokenizer.from_pretrained("../training/model-builds/hybrid-determination-model")
 
 offline_q = 'offline_question'
 basic_q = 'basic_question'

@@ -14,9 +14,6 @@ data = pd.read_csv("decision_data.csv")
 data['label'] = data['label'].str.strip()  # Remove leading/trailing whitespace
 data['label'] = data['label'].str.replace('"', '')  # Remove quotation marks
 
-# Print the unique labels to ensure they are correct
-print(data['label'].unique())  # This should now only show valid labels
-
 # Filter out rows with invalid labels
 valid_labels = ['offline_question', 'basic_question', 'complex_question', 'vision', 'explicit']
 data = data[data['label'].isin(valid_labels)]
@@ -64,5 +61,5 @@ trainer = Trainer(
 trainer.train()
 
 # Save the fine-tuned model
-model.save_pretrained("./hybrid-determination-model")
-tokenizer.save_pretrained("./hybrid-determination-model")
+model.save_pretrained("./model-builds/hybrid-determination-model")
+tokenizer.save_pretrained("./model-builds/hybrid-determination-model")
