@@ -5,4 +5,4 @@ Lightweight Fine-tuned distilBERD LLM to determine which service (local/cloud/vi
 ### To Build:
 - Run "training/trainers/hybrid_determination_trainer.py"
 ### To Test:
-- Then run "model-testers/hybrid_determination_tester.py"
+- Run "model-testers/hybrid_determination_tester.py"
