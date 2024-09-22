@@ -41,20 +41,20 @@ for question in questions:
     else:
         counts[expected_label]['failures'] += 1
 
-    print(
-        f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
-        f"\n\t\tPredicted label: {predicted_label_str}"
-        f"\n\t\tExpected label:  {expected_label}"
-    )
-    # if not correct:
-    #     print(
-    #         f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
-    #         f"\n\t\tPredicted label: {predicted_label_str}"
-    #         f"\n\t\tExpected label:  {expected_label}"
-    #     )
+    # print(
+    #     f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
+    #     f"\n\t\tPredicted label: {predicted_label_str}"
+    #     f"\n\t\tExpected label:  {expected_label}"
+    # )
+    if not correct:
+        print(
+            f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
+            f"\n\t\tPredicted label: {predicted_label_str}"
+            f"\n\t\tExpected label:  {expected_label}"
+        )
 
 
-print(f"Results:\n")
+print(f"Results:")
 for count in counts:
     print(
         f"\t{count}:"
@@ -67,11 +67,11 @@ total_failures = sum(count["failures"] for count in counts.values())
 total_responses = total_correct + total_failures
 
 print(
-    f"\nCumulative Results:"
+    f"Cumulative Results:"
     f"\n\tTotal Correct: {total_correct}"
     f"\n\tTotal Failures: {total_failures}"
     f"\n\tAccuracy: {(total_correct / total_responses) * 100:.1f}%"
-    f" {str("\033[92m" +"ACCEPTABLE" + "\033[0m") if (total_correct / total_responses) > .95
+    f"\t{str("\033[92m" +"ACCEPTABLE" + "\033[0m") if (total_correct / total_responses) > .98
         else str("\033[91m" +"CONTINUE TRAINING" + "\033[0m")}"
 )
 
