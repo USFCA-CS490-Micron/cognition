@@ -1,22 +1,22 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-import test_reader
-
+from test_reader import load_queries
 
 # Load the fine-tuned model and tokenizer
 model = AutoModelForSequenceClassification.from_pretrained("../training/model-builds/hybrid-determination-model")
 tokenizer = AutoTokenizer.from_pretrained("../training/model-builds/hybrid-determination-model")
 
-offline_q = 'offline_question'
-basic_q = 'basic_question'
-complex_q = 'complex_question'
-vision = 'vision'
-explicit = 'explicit'
+# offline_q = 'offline_question'
+# basic_q = 'basic_question'
+# complex_q = 'complex_question'
+# vision = 'vision'
+# explicit = 'explicit'
 
 # Define labels
-labels = [offline_q, basic_q, complex_q, vision, explicit]
+labels = ['offline_question', 'basic_question', 'complex_question', 'vision', 'explicit']
+# labels = [offline_q, basic_q, complex_q, vision, explicit]
 
-questions = test_reader.load_queries("./tests/determination.csv")
+questions = load_queries("./tests/determination_test_data.csv")
 counts = {
     "offline_question": {"correct": 0, "failures": 0},
     "basic_question": {"correct": 0, "failures": 0},
@@ -26,7 +26,7 @@ counts = {
 }
 
 
-print(f"\nGetting answers...\n")
+print(f"\nTesting...")
 for question in questions:
     # Tokenize the input
     inputs = tokenizer(question['query'], return_tensors="pt")
@@ -38,18 +38,22 @@ for question in questions:
     # Get the predicted label
     predicted_label = torch.argmax(logits, dim=-1).item()
 
+    # predicted_label_str = labels[predicted_label]
+    predicted_label_str = labels[predicted_label]
+    expected_label = question['label'].strip()
+
     correct = False
-    if labels[predicted_label] == question['label']:
-        counts[question['label']]['correct'] += 1
+    if predicted_label_str == expected_label:
+        counts[expected_label]['correct'] += 1
         correct = True
     else:
-        counts[question['label']]['failures'] += 1
+        counts[expected_label]['failures'] += 1
 
     if not correct:
         print(
-            f"{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
-            f"\n\t\tPredicted label: {labels[predicted_label]}"
-            f"\n\t\tExpected label:  {question['label']}"
+            f"\n{str("\033[92m" +"PASS" + "\033[0m") if correct else str("\033[91m" +"FAIL" + "\033[0m")} Question: {question['query']}"
+            f"\n\t\tPredicted label: {predicted_label_str}"
+            f"\n\t\tExpected label:  {expected_label}"
         )
 
 
@@ -68,6 +72,6 @@ total_responses = total_correct + total_failures
 print(
     f"\nTotal Correct: {total_correct}"
     f"\nTotal Failures: {total_failures}"
-    f"\nPercent correct: {(total_correct / total_responses) * 100:.1f}%"
+    f"\nAccuracy: {(total_correct / total_responses) * 100:.1f}%"
 )
 
