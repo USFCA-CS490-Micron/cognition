@@ -22,9 +22,9 @@ Please generate distilBERD fine-tuning training data for a model which responds 
 
 "offline_question" if the query can be accurately answered by a locally-run lightweight LLM such as llama3.
 "basic_question" if the query is similar to a google search and/or requires up-to-date information; these are queries best handled by Google Natural Language.
-"complex_question" if the query requires advanced linguistic analysis or reasoning; these are queries best handled by a model like GPT-4.
+"complex_question" if the query requires linguistic analysis, reasoning, summarization, or explanation; these are queries best handled by a model like GPT-4.
 "vision" if the query requires vision processing.
-"explicit" if the query is inappropriate in any way (sex, drugs, swear words, etc).
+"explicit" if the query is inappropriate in any way (sex, drugs, swear words, etc). Queries which ask about health effects of drugs or substances are not explicit.
 
 Please generate the data in the following CSV format with no header row:
 "query","type".
@@ -42,7 +42,7 @@ Please generate distilBERD fine-tuning tests for a model which responds in the f
 
 "offline_question" if the query can be accurately answered by a locally-run lightweight LLM such as llama3.
 "basic_question" if the query is similar to a google search and/or requires up-to-date information; these are queries best handled by Google Natural Language.
-"complex_question" if the query requires advanced linguistic analysis or reasoning; these are queries best handled by a model like GPT-4.
+"complex_question" if the query requires linguistic analysis, reasoning, summarization, or explanation; these are queries best handled by a model like GPT-4.
 "vision" if the query requires vision processing.
 "explicit" if the query is inappropriate in any way (sex, drugs, swear words, etc).
 
