@@ -1,3 +1,4 @@
+from sympy.physics.units import length
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 from test_reader import load_queries
@@ -21,7 +22,7 @@ counts = {
 
 print(f"\nTesting..."
       f"\nPlease wait, this may take a while."
-      f"\nRunning {len(questions)} tests {num_repeats} times.")
+      f"\nRunning {len(questions)} tests {num_repeats} times ({len(questions) * num_repeats} iterations).")
 for i in range(num_repeats):
     for question in questions:
         # Tokenize the input
@@ -55,7 +56,7 @@ for i in range(num_repeats):
                 f"\n\t\tPredicted label: {predicted_label_str}"
                 f"\n\t\tExpected label:  {expected_label}"
             )
-    print(f"Finished iteration {i + 1}.")
+    print(f"Finished pass {i + 1} ({(i + 1) * len(questions)} tests complete)...")
 
 
 print(f"\nResults:")
