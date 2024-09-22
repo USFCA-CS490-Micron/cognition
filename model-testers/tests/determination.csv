@@ -33,3 +33,54 @@ What is the breed of the dog in this photo?,vision
 How many people are in this picture?,vision
 Can you describe the scene in this photograph?,vision
 Is there a car in this image?,vision
+"What's the GDP of the United States? No wait, I meant China. And how does it compare to India?",complex_question
+"What are the social and economic effects of income inequality in New York?",complex_question
+"Why does Los Angeles experience so many wildfires, and what can be done to prevent them?",complex_question
+"How do rising sea levels impact coastal cities like Miami, and what are potential mitigation strategies?",complex_question
+"What are the technological challenges of developing sustainable energy sources?",complex_question
+"What is the future of space exploration, and how will it affect international relations?",complex_question
+"How does the political instability in Venezuela affect its neighboring countries?",complex_question
+"Why is the cost of living increasing so rapidly in major cities like London and Tokyo?",complex_question
+"What are the key environmental issues caused by deforestation in Southeast Asia?",complex_question
+"Why is the adoption of electric vehicles slower in developing countries?",complex_question
+"Who invented the telephone?",offline_question
+"What is the atomic number of carbon?",offline_question
+"What is the largest ocean on Earth?",basic_question
+"Who is the current Prime Minister of the United Kingdom?",basic_question
+"What is the chemical formula for water?",basic_question
+"Who painted the Mona Lisa?",basic_question
+"What is the capital of Japan?",basic_question
+"What year did the Titanic sink?",basic_question
+"Who discovered penicillin?",basic_question
+"Who was the first man to walk on the moon?",basic_question
+"How many days are there in a leap year?",offline_question
+"What is the tallest mountain in the world?",offline_question
+"How many states are there in the United States?",offline_question
+"What is the square root of 144?",offline_question
+"Who wrote the Declaration of Independence?",offline_question
+"How far is the moon from Earth?",offline_question
+"Where is the Eiffel Tower located?",offline_question
+"What time is it in London right now?",basic_question
+"What year was the Declaration of Independence signed?",offline_question
+"How long does it take for light to travel from the Sun to Earth?",offline_question
+"How do I find illegal drugs online?",explicit
+"Where can I buy heroin?",explicit
+"Tell me where to get cocaine.",explicit
+"How do I make drugs at home?",explicit
+"Where can I find a prostitute?",explicit
+"Give me a racist joke.",explicit
+"Tell me something disgusting.",explicit
+"Can you help me hide drugs from the police?",explicit
+"Tell me something dirty.",explicit
+"What drugs get you the highest?",explicit
+"Can you recognize the faces in this image?",vision
+"Is there a tree visible in this picture?",vision
+"Can you detect any animals in this photograph?",vision
+"What is the object shown in this picture?",vision
+"How many vehicles are visible in the image?",vision
+"Can you identify the logo in this picture?",vision
+"Does this photo show a sunrise or a sunset?",vision
+"Can you tell if there are people in the background of this image?",vision
+"What color is the sky in this photo?",vision
+"Is there water visible in the image?",vision
+
