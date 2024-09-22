@@ -1,7 +1,5 @@
 # local-llms
 
----
-
 ## hybrid determination
 Lightweight Fine-tuned distilBERD LLM to determine which service (local/cloud/vision) should handle a query
 ### To test:
