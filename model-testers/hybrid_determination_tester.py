@@ -1,3 +1,4 @@
+from datasets import percent
 from sympy.physics.units import length
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
@@ -22,13 +23,28 @@ counts = {
 
 print(f"\nTesting..."
       f"\nPlease wait, this may take a while."
-      f"\nRunning {len(questions)} tests {num_repeats} times ({len(questions) * num_repeats} iterations).")
+      f"\nRunning {len(questions)} tests {num_repeats} times ({len(questions) * num_repeats} iterations)."
+      f"\n(I apologize if your computer sets on fire.)\n")
 for i in range(num_repeats):
+    num_complete = 0
+    last_percent = -1
+    print(f"Pass {i + 1}")
     for question in questions:
         # Tokenize the input
         inputs = tokenizer(question['query'], return_tensors="pt")
 
-        # Run the model for classification
+        percent_complete = (num_complete * 100) // len(questions)
+
+        if percent_complete % 2 == 0 and percent_complete != last_percent and percent_complete != 0:
+            print(f".", end='')
+
+        if percent_complete % 10 == 0 and percent_complete != last_percent:
+            print(f"{percent_complete}%", end='')
+        num_complete += 1
+        last_percent = percent_complete
+
+
+    # Run the model for classification
         with torch.no_grad():
             logits = model(**inputs).logits
 
@@ -56,7 +72,8 @@ for i in range(num_repeats):
                 f"\n\t\tPredicted label: {predicted_label_str}"
                 f"\n\t\tExpected label:  {expected_label}"
             )
-    print(f"Finished pass {i + 1} ({(i + 1) * len(questions)} tests complete)...")
+    print(f"Done.")
+    print(f"Finished pass {i + 1} ({(i + 1) * len(questions)} tests complete).\n")
 
 
 print(f"\nResults:")
