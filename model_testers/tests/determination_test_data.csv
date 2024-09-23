@@ -50,7 +50,7 @@ Is there a car in this image?,vision
 "What is the chemical formula for water?",offline_question
 "Who painted the Mona Lisa?",offline_question
 "What is the capital of Japan?",offline_question
-"What year did the Titanic sink?",basic_question
+"What year did the Titanic sink?",offline_question
 "Who discovered penicillin?",offline_question
 "Who was the first man to walk on the moon?",offline_question
 "How many days are there in a leap year?",offline_question
@@ -271,7 +271,7 @@ Is there a car in this image?,vision
 "What are the benefits of a plant-based diet?","complex_question"
 "How do solar panels generate electricity?","basic_question"
 "What are the key principles of the Paris Climate Agreement?","complex_question"
-"Who is the author of 'The Catcher in the Rye'?","basic_question"
+"Who is the author of 'The Catcher in the Rye'?","offline_question"
 "What are the main differences between Wi-Fi 5 and Wi-Fi 6?","complex_question"
 "How do you calculate compound interest?","offline_question"
 "What are the main causes of inflation?","complex_question"
