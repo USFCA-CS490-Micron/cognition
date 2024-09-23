@@ -5,7 +5,7 @@ import torch
 
 from .test_reader import load_queries
 
-def test():
+def test(passes=10):
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -15,13 +15,11 @@ def test():
     # Load the fine-tuned model and tokenizer
     model = AutoModelForSequenceClassification.from_pretrained(model_path)
     tokenizer = AutoTokenizer.from_pretrained(model_path)
-    # model = AutoModelForSequenceClassification.from_pretrained("../training/model-builds/hybrid-determination")
-    # tokenizer = AutoTokenizer.from_pretrained("../training/model-builds/hybrid-determination")
 
     # Define labels
     labels = ['offline_question', 'basic_question', 'complex_question', 'vision', 'explicit']
 
-    num_repeats = 10
+    num_repeats = passes if passes >= 1 else 10
     questions = load_queries(test_path)
     counts = {
         "offline_question": {"correct": 0, "failures": 0},
