@@ -2,11 +2,12 @@
 
 ## hybrid-determination
 Lightweight fine-tuned distilBERD LLM to determine which service (local/cloud/vision) should handle a query
-### To Build:
-- Run "training/trainers/hybrid_determination_trainer.py"
-### To Test:
-- Run "model-testers/hybrid_determination_tester.py"
-- Output accuracy must be 0.98 (98%) or greater to be considered Acceptable
+
+### To Train/Test
+- In `main.py`, use `hybrid_determination_model(train=<bool>, test=<bool>, passes=<int>)`
+- Set `train=True` to train, `test=True` to test; `passes=<int>` is used to define the number of passes used in multi-pass testing.
+    - Defaults: `train=True`, `test=True`, `passes=10`
+
 ### Labels
 | Type               | Explanation                                                                                               |
 |--------------------|-----------------------------------------------------------------------------------------------------------|
