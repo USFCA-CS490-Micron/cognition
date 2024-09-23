@@ -27,15 +27,15 @@ print(f"\nTesting..."
       f"\n(I apologize if your computer sets on fire.)\n")
 for i in range(num_repeats):
     num_complete = 0
-    last_percent = -1
-    print(f"Pass {i + 1}")
+    last_percent = 0
+    print(f"Pass {i + 1}\nStarting", end='')
     for question in questions:
         # Tokenize the input
         inputs = tokenizer(question['query'], return_tensors="pt")
 
         percent_complete = (num_complete * 100) // len(questions)
 
-        if percent_complete % 2 == 0 and percent_complete != last_percent and percent_complete != 0:
+        if percent_complete % 2 == 0 and percent_complete != last_percent:
             print(f".", end='')
 
         if percent_complete % 10 == 0 and percent_complete != last_percent:
@@ -72,7 +72,7 @@ for i in range(num_repeats):
                 f"\n\t\tPredicted label: {predicted_label_str}"
                 f"\n\t\tExpected label:  {expected_label}"
             )
-    print(f"Done.")
+    print(f"Done")
     print(f"Finished pass {i + 1} ({(i + 1) * len(questions)} tests complete).\n")
 
 
