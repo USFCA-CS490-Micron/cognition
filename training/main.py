@@ -1,5 +1,5 @@
-from model_testers import hybrid_determination_tester
-from training.trainers import hybrid_determination_trainer
+from ..model_testers import hybrid_determination_tester
+from ..training.trainers import hybrid_determination_trainer
 
 # Train and test all models
 
