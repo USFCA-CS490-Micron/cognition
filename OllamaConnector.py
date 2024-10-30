@@ -1,5 +1,5 @@
 import json
-from typing import Optional
+from typing import Optional, Iterator, Mapping, Any
 
 import ollama
 
@@ -98,23 +98,40 @@ class OllamaConnector:
                 install_status = self.install_model(model_name=model_name)
                 print(f"Install status for model {model_name}: {install_status}")
 
-    def send_query(self, query: str, model: str) -> str | None:
+    def send_query(self, query: str, model: str, stream: bool = False) -> str | Iterator[Mapping[str, Any]] | None:
+        if stream:
+            return self.send_query_for_stream(query, model)
         try:
             if model not in self.models.keys():
                 print(f"Model {model} is not in self.models.")
                 return None
             response = self.client.chat(model=model, messages=[{
                 "role": "user",
-                "content": query
+                "content": query,
             }])["message"]["content"]
             return response
         except ollama.ResponseError as e:
             print(f"Query to model {model} failed:\n\t{e}")
             return None
 
+    def send_query_for_stream(self, query: str, model: str) -> Iterator[Mapping[str, Any]] | None:
+        try:
+            if model not in self.models.keys():
+                print(f"Model {model} not in self.models")
+                return None
+            return self.client.chat(
+                model=model,
+                stream=True,
+                messages=[{"role": "user", "content": query}]
+            )
+        except ollama.ResponseError as e:
+            print(f"Query to model {model} failed:\n\t{e}")
+            return None
+
+
     # update to use 'stream = True' (this will allow text to be written to display as it comes)
-    def send_query_qa(self, query: str) -> str | None:
-        response = self.send_query(query=query, model="llama_qa")
+    def send_query_qa(self, query: str, stream: bool = False) -> str | None:
+        response = self.send_query(query=query, model="llama_qa", stream=stream)
         return response
 
     def test_all_models(self):
