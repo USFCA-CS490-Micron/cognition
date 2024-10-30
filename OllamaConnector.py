@@ -44,8 +44,8 @@ class OllamaConnector:
             print(f"Attempting to install custom model {model_name}")
             modelfile = self.models[model_name]["modelfile"]
             try:
-                created_model_status = self.client.create(model=model_name, modelfile=modelfile)
-                self.models[model_name]["is_installed"] = True if created_model_status is not None else False
+                self.client.create(model=model_name, modelfile=modelfile)
+                self.models[model_name]["is_installed"] = True
                 if self.is_model_installed(model_name=model_name): print(f"Model {model_name} was installed.")
                 return True
             except ollama.ResponseError as e:
@@ -53,6 +53,7 @@ class OllamaConnector:
                 return False
         else:
             try:
+                print(f"Pulling model {model_name} from ollama...")
                 return True if self.client.pull(model_name) is not None else False
             except ollama.ResponseError as e:
                 print(f"Failed to pull model {model_name}, error: {e}")
@@ -73,7 +74,7 @@ class OllamaConnector:
         for model_name in self.models.keys():
             print(f"Validating model: {model_name}")
 
-            if not self.models[model_name]["is_installed"]:
+            if not self.is_model_installed(model_name=model_name):
                 try:
                     print(f"\tChecking if model {model_name} installed...")
                     try:
@@ -141,10 +142,10 @@ class OllamaConnector:
             print(f"\n====Response from model {model}====\n{response}\n====End of response from model {model}====")
 
 
-def main():
+def test():
     connector = OllamaConnector()
     connector.test_all_models()
 
 
 if __name__ == '__main__':
-    main()
+    test()
