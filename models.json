@@ -1,0 +1,29 @@
+{
+  "llama_qa": {
+    "is_custom": true,
+    "is_file_based": true,
+    "is_installed": false,
+    "is_disabled": false,
+    "modelfile": null,
+    "modelfile_loc": "modelfiles/QA_Modelfile",
+    "test_query": "Why is the sky blue?"
+  },
+  "llama3.2": {
+    "is_custom": false,
+    "is_file_based": false,
+    "is_installed": false,
+    "is_disabled": false,
+    "modelfile": null,
+    "modelfile_loc": null,
+    "test_query": "Why is the sky blue?"
+  },
+  "gemma2:2b": {
+    "is_custom": false,
+    "is_file_based": false,
+    "is_installed": false,
+    "is_disabled": false,
+    "modelfile": null,
+    "modelfile_loc": null,
+    "test_query": "Why is the sky blue?"
+  }
+}
