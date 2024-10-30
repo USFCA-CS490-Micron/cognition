@@ -128,8 +128,6 @@ class OllamaConnector:
             print(f"Query to model {model} failed:\n\t{e}")
             return None
 
-
-    # update to use 'stream = True' (this will allow text to be written to display as it comes)
     def send_query_qa(self, query: str, stream: bool = False) -> str | None:
         response = self.send_query(query=query, model="llama_qa", stream=stream)
         return response
