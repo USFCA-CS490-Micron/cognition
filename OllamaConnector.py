@@ -1,4 +1,5 @@
 import json
+import os
 from typing import Optional, Iterator, Mapping, Any
 
 import ollama
@@ -7,18 +8,28 @@ import ollama
 class OllamaConnector:
     def __init__(self, ollama_host: Optional[str] = "http://localhost:11434"):
         self.client = ollama.Client(host=ollama_host)
-        self.models = self.read_models_json("models.json")
+        self.models = self.read_models_json()
         self.populate_modelfiles_for_custom_models()
         self.validate_all_models()
 
     @staticmethod
     def read_models_json(json_loc: Optional[str] = "models.json"):
+        json_loc = os.path.join(os.path.dirname(__file__), json_loc)
         try:
             with open(json_loc, "rt") as models_json:
                 models_dict = json.load(models_json)
+                models_dict = OllamaConnector.resolve_relative_paths(models_dict, os.path.dirname(json_loc))
                 return models_dict
         except OSError as e:
             print(f"Failed to read in {json_loc}:\n\t{e}")
+            exit(-1)
+
+    @staticmethod
+    def resolve_relative_paths(models_dict, base_path):
+        for model in models_dict.keys():
+            if models_dict[model]["modelfile_loc"] is not None:
+                models_dict[model]["modelfile_loc"] = os.path.join(base_path, models_dict[model]["modelfile_loc"])
+        return models_dict
 
     def does_model_exist(self, model_name: str) -> bool:
         return model_name in self.models.keys()
@@ -51,6 +62,10 @@ class OllamaConnector:
             except ollama.ResponseError as e:
                 print(f"Failed to install custom model {model_name}: {e}")
                 return False
+            except ollama.RequestError as e:
+                print(f"Failed to install custom model {model_name}: {e}")
+                return False
+
         else:
             try:
                 print(f"Pulling model {model_name} from ollama...")
@@ -62,7 +77,7 @@ class OllamaConnector:
     def populate_modelfiles_for_custom_models(self):
         for model_name in self.models.keys():
             if self.models[model_name]["is_file_based"]:
-                print(f"Populating `modelfile` for {model_name}")
+                print(f"Populating `modelfile` value for {model_name}")
                 try:
                     with open(self.models[model_name]["modelfile_loc"], "rt") as modelfile_wrapper:
                         modelfile = modelfile_wrapper.read()
