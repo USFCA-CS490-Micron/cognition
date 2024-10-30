@@ -1,5 +1,48 @@
 # local-llms
 
+## OllamaConnector
+Allows easy access to an ollama instance
+### To use:
+
+- Add desired models to "models.json"
+  - Each model should use the following format:
+    ```json
+    "llama_qa": {
+      "is_custom": true,
+      "is_file_based": true,
+      "is_installed": false,
+      "is_disabled": false,
+      "modelfile": null,
+      "modelfile_loc": "modelfiles/QA_Modelfile",
+      "test_query": "Why is the sky blue?"
+    }
+    ```
+    - `is_custom`: True if this model is not pulled from ollama
+    - `is_file_based`: True if this model uses a Modelfile
+    - `is_installed`: ALWAYS set to "false" (this is updated at runtime)
+    - `is_disabled`: ALWAYS set to "false" (this is updated at runtime)
+    - `modelfile`: ALWAYS set to "null" (this is updated at runtime)
+    - `modelfile_loc`: The relative path of the modelfile
+    - `test_query`: A query for test functions
+
+
+- Instantiate an OllamaConnector object:
+    `connector: OllamaConnector = OllamaConnector(host: Optional[str])`  
+    (`host` default is `http://localhost:11434`)  
+
+
+- Call `connector.send_query(query: str, model: str) -> str`  
+
+#### For example:
+  ```python
+  import OllamaConnector
+  
+  connector = OllamaConnector() # or OllamaConnector(host="http://somehost:11434")
+  response: str = connector.send_query(query="Why is the sky blue?", model="llama_qa")
+  print(response)
+  ```
+---
+
 ## hybrid-determination
 Lightweight fine-tuned distilBERD LLM to determine which service (local/cloud/vision) should handle a query
 
