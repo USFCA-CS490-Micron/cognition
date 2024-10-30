@@ -1,14 +1,18 @@
 import json
+from typing import Optional
+
 import ollama
 
 
 class OllamaConnector:
-    def __init__(self):
-        self.client = ollama.Client(host="http://localhost:11434")
+    def __init__(self, ollama_host: Optional[str] = "http://localhost:11434"):
+        self.client = ollama.Client(host=ollama_host)
         self.models = self.read_models_json("models.json")
+        self.populate_modelfiles_for_custom_models()
+        self.validate_all_models()
 
     @staticmethod
-    def read_models_json(json_loc: str = "models.json"):
+    def read_models_json(json_loc: Optional[str] = "models.json"):
         try:
             with open(json_loc, "rt") as models_json:
                 models_dict = json.load(models_json)
@@ -124,8 +128,6 @@ class OllamaConnector:
 
 def main():
     connector = OllamaConnector()
-    connector.populate_modelfiles_for_custom_models()
-    connector.validate_all_models()
     connector.test_all_models()
 
 
