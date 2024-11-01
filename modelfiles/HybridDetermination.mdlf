@@ -1,0 +1,2 @@
+FROM llama3.2:1b
+ADAPTER ../models/hybrid_determination_safetensors/

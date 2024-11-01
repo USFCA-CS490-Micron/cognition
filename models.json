@@ -5,7 +5,16 @@
     "is_installed": false,
     "is_disabled": false,
     "modelfile": null,
-    "modelfile_loc": "modelfiles/QA_Modelfile",
+    "modelfile_loc": "modelfiles/QA.mdlf",
+    "test_query": "Why is the sky blue?"
+  },
+  "HybridDetermination": {
+    "is_custom": true,
+    "is_file_based": true,
+    "is_installed": false,
+    "is_disabled": false,
+    "modelfile": null,
+    "modelfile_loc": "modelfiles/HybridDetermination_Temporary.mdlf",
     "test_query": "Why is the sky blue?"
   },
   "llama3.2": {
