@@ -1,4 +1,5 @@
 # not sure what needs to be imported, have fun :)
+import asyncio
 
 
 class WhisperConnector:
@@ -13,6 +14,9 @@ class WhisperConnector:
         pass
 
 
-if __name__ == '__main__':
+async def main():
     whisper = WhisperConnector()
     whisper.test()
+
+if __name__ == '__main__':
+    asyncio.run(main())
