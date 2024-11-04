@@ -17,8 +17,9 @@ class HybridDeterminationModel:
         "explicit": EXPLICIT
     }
 
-    def __init__(self):
-        self.connector = OllamaConnector()
+    def __init__(self, ollama_connector: OllamaConnector = None):
+        self.connector = ollama_connector if ollama_connector is not None else OllamaConnector()
+        # self.connector = OllamaConnector()
 
     def determine(self, query: str) -> int:
         result = self.connector.send_query(query=query, model="HybridDetermination", stream=False)
