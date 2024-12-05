@@ -1,6 +1,6 @@
-import dotenv
 import os
 
+import dotenv
 import openai
 
 
