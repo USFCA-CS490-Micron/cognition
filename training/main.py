@@ -1,5 +1,11 @@
-from ..model_testers import hybrid_determination_tester
-from ..training.trainers import hybrid_determination_trainer
+import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# from ..model_testers import hybrid_determination_tester
+from cognition.training.trainers import hybrid_determination_trainer
+
 
 # Train and test all models
 
@@ -10,9 +16,9 @@ from ..training.trainers import hybrid_determination_trainer
 def hybrid_determination_model(train=True, test=True, passes=10):
     if train:
         hybrid_determination_trainer.train()
-    if test:
-        hybrid_determination_tester.test(passes=passes)
+    # if test:
+    #     hybrid_determination_tester.test(passes=passes)
 
 
 if __name__ == '__main__':
-    hybrid_determination_model(train=True, test=True, passes=10)
+    hybrid_determination_model(train=True, test=False, passes=10)

@@ -36,27 +36,30 @@ class HybridModelHandler:
     }
 
     def __init__(self):
-        self.model = HybridDeterminationModel()
         self.ollama = OllamaConnector()
         self.openai = OpenAIConnector()
+        self.model = HybridDeterminationModel(self.ollama)
 
-    def query(self, query: str):
-        kind = self.model.determine(query)
+    def query(self, query_str: str):
+        kind = self.model.determine(query_str)
 
-        print(f"HybridModelHandler received query: {query}\n"
-              f"Binding assigned: {self.rev_bindings[kind]}\n"
-              f"Sending query to provider: {self.model_bindings[kind]}")
+        print(f"HybridModelHandler received query: {query_str}\n"
+              f"\tBinding assigned: {self.rev_bindings[kind]}\n"
+              f"\tSending query to provider: {self.model_bindings[kind]}")
 
         if kind == self.OFFLINE:
-            return self.ollama.send_query(query, "llama_qa", stream=False)
+            return self.ollama.send_query(query_str, "llama_qa", stream=False)
         elif kind == self.BASIC:
-            return self.openai.send_query(query, model="4o-mini")
+            return self.openai.send_query(query_str, model="4o-mini")
         elif kind == self.COMPLEX:
-            return self.openai.send_query(query, model="4o-mini")
+            return self.openai.send_query(query_str, model="4o-mini")
         elif kind == self.VISION:
             return "Not yet supported."
         elif kind == self.EXPLICIT:
             return "I'm sorry, I will not answer that."
+
+    def determine(self, query: str):
+        pass
 
 
 if __name__ == '__main__':
