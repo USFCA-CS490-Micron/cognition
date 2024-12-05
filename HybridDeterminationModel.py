@@ -1,6 +1,8 @@
 from .OllamaConnector import OllamaConnector
 
 
+# TODO merge this with HybridDeterminationHandler
+
 class HybridDeterminationModel:
     OFFLINE = 0
     BASIC = 1
