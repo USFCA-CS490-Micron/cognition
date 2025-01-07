@@ -1,7 +1,7 @@
-from .HybridDeterminationModel import HybridDeterminationModel
-from .OllamaConnector import OllamaConnector
-from .OpenAIConnector import OpenAIConnector
-
+from ..HybridDeterminationModel import HybridDeterminationModel
+from ..connectors.OllamaConnector import OllamaConnector
+from ..connectors.OpenAIConnector import OpenAIConnector
+from ..connectors.TogetherConnector import TogetherConnector
 
 class HybridModelHandler:
     OFFLINE = 0
@@ -38,6 +38,7 @@ class HybridModelHandler:
     def __init__(self):
         self.ollama = OllamaConnector()
         self.openai = OpenAIConnector()
+        self.together = TogetherConnector()
         self.model = HybridDeterminationModel(self.ollama)
 
     def query(self, query_str: str):
@@ -50,18 +51,10 @@ class HybridModelHandler:
         if kind == self.OFFLINE:
             return self.ollama.send_query(query_str, "llama_qa", stream=False)
         elif kind == self.BASIC:
-            return self.openai.send_query(query_str, model="4o-mini")
+            return self.together.send_query(query_str, model="llama-3.3-70B")
         elif kind == self.COMPLEX:
-            return self.openai.send_query(query_str, model="4o-mini")
+            return self.together.send_query(query_str, model="llama-3.1-405B")
         elif kind == self.VISION:
-            return "Not yet supported."
+            return "Vision requests are not yet supported."
         elif kind == self.EXPLICIT:
             return "I'm sorry, I will not answer that."
-
-    def determine(self, query: str):
-        pass
-
-
-if __name__ == '__main__':
-    hmh = HybridModelHandler()
-    hmh.query("Hello!")

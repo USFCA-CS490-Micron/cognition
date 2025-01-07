@@ -1,23 +1,20 @@
 import os
 
 import dotenv
-import openai
+from together import Together
 
-"""
-RETIRED IN FAVOR OF TOGETHER.AI (OPEN SOURCE MODELS)
-"""
 
-class OpenAIConnector:
+class TogetherConnector:
 
     def __init__(self):
         dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), "./env_vars"))
 
-        self.client = openai.Client(api_key=os.getenv("OPENAI_SECRET"))
-        self.sys_prompt = "You are a helpful assistant who should only provide factual information. Please limit responses to 100 words or shorter."
+        self.client = Together(api_key=os.getenv("TOGETHER_SECRET"))
+        self.sys_prompt = "You are a helpful assistant who should only provide factual information. Please limit responses to 100 words or less."
 
-    def query_mini(self, query: str):
+    def completion(self, query: str, model: str) -> str:
         response = self.client.chat.completions.create(
-            model="gpt-4o-mini",
+            model=model,
             messages=[
                 {"role": "system", "content": self.sys_prompt},
                 {"role": "user", "content": query}
@@ -26,9 +23,12 @@ class OpenAIConnector:
         return response.choices[0].message.content
 
     def send_query(self, query: str, model: str) -> str:
-        if model == "4o-mini":
-            return self.query_mini(query)
-        # todo add support for other models (for funsies)
+        if model == "llama-3.3-70B":
+            return self.completion(query, model="meta-llama/Meta-Llama-3.3-70B-Instruct-Turbo")
+        elif model == "llama-3.1-405B":
+            return self.completion(query, model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo")
+        elif model == "gemma-2-27b":
+            return self.completion(query, model="google/gemma-2-27b-it")
 
     def test(self):
         queries = [
@@ -40,8 +40,3 @@ class OpenAIConnector:
         ]
         for query in queries:
             print(f"Query: {query}\nResponse: {self.send_query(query, "4o-mini")}\n")
-
-
-if __name__ == '__main__':
-    connector = OpenAIConnector()
-    connector.test()
